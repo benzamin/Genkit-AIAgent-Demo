@@ -29,7 +29,7 @@ This repository demonstrates how to build an intelligent chat agent using the **
 
 1.  **Clone the repository:**
     ```bash
-    git clone <repository-url>
+    git clone https://github.com/benzamin/Genkit-AIAgent-Demo.git
     cd Genkit-AIAgent-Demo
     ```
 
