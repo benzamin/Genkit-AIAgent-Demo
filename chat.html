@@ -90,6 +90,14 @@
             font-size: 0.85rem;
         }
 
+        .timestamp {
+            font-size: 0.7rem;
+            color: #65676b;
+            margin-top: 4px;
+            text-align: right;
+            opacity: 0.8;
+        }
+
         /* Markdown Styles */
         .message p { margin: 0 0 8px 0; }
         .message p:last-child { margin-bottom: 0; }
@@ -150,6 +158,7 @@
             border-radius: 18px;
             border-bottom-left-radius: 4px;
             margin-bottom: 15px;
+            margin-left: 10px;
         }
 
         .typing-indicator span {
@@ -224,6 +233,13 @@
                 // Keep user messages as plain text to avoid injection
                 div.textContent = text;
             }
+
+            // Add timestamp
+            const timeDiv = document.createElement('div');
+            timeDiv.classList.add('timestamp');
+            const now = new Date();
+            timeDiv.textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+            div.appendChild(timeDiv);
 
             messagesArea.appendChild(div);
             messagesArea.scrollTop = messagesArea.scrollHeight;
