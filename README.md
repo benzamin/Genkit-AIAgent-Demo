@@ -2,6 +2,8 @@
 
 This repository demonstrates how to build an intelligent chat agent using the **Genkit Go** framework. It showcases how to create a conversational AI that maintains context (history) and leverages **tools** to perform specific tasks or retrieve external information, going beyond simple text generation.
 
+![Demo](https://raw.githubusercontent.com/benzamin/Genkit-AIAgent-Demo/main/Demo-screenshot.png)
+
 ## Features
 
 - **Contextual Chat**: Maintains conversation history per session ID, allowing for multi-turn conversations.
