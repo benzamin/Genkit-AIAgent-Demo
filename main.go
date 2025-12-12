@@ -70,7 +70,7 @@ func chatFlow(ctx context.Context, userInput *ApiInput) (string, error) {
 	if userInput.SessionID != "" {
 		userHistory = history[userInput.SessionID]
 	}
-	maxTokens, err := strconv.Atoi(os.Getenv("LLM_MAX_OUTPUT_TOKENS_INT"))
+	maxTokens, err := strconv.Atoi(os.Getenv("LLM_MAX_OUTPUT_TOKENS"))
 	if err != nil {
 		maxTokens = 500 // default value
 	}

@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"net/http"
 	"net/url"
+	"time"
 
 	"github.com/firebase/genkit/go/ai"
 	"github.com/firebase/genkit/go/genkit"
@@ -18,7 +19,7 @@ func getCurrentWeatherTool(g *genkit.Genkit) ai.Tool {
 			Location string `json:"location"`
 		}) (string, error) {
 			fmt.Println("TOOL CALLED: Weather tool with location:", input.Location)
-			return fmt.Sprintf("The current weather in %s is 63°F and sunny.", input.Location), nil
+			return fmt.Sprintf("The current weather in %s is 27°C and drizzling.", input.Location), nil
 		},
 	)
 }
@@ -52,9 +53,12 @@ func guessAgeTool(g *genkit.Genkit) ai.Tool {
 			Name string `json:"name"`
 		}) (int, error) {
 			fmt.Println("TOOL CALLED: Age tool  with name:", input.Name)
-			resp, err := http.Get(fmt.Sprintf("https://api.agify.io/?name=%s", url.QueryEscape(input.Name)))
+			var httpClient = &http.Client{
+				Timeout: 10 * time.Second,
+			}
+			resp, err := httpClient.Get(fmt.Sprintf("https://api.agify.io/?name=%s", url.QueryEscape(input.Name)))
 			if err != nil {
-				return 0, fmt.Errorf("failed to call age API: %w", err)
+				return 0, err
 			}
 			defer resp.Body.Close()
 
@@ -81,9 +85,12 @@ func guessGenderTool(g *genkit.Genkit) ai.Tool {
 			Name string `json:"name"`
 		}) (string, error) {
 			fmt.Println("TOOL CALLED: Gender tool with name:", input.Name)
-			resp, err := http.Get(fmt.Sprintf("https://api.genderize.io/?name=%s", url.QueryEscape(input.Name)))
+			var httpClient = &http.Client{
+				Timeout: 10 * time.Second,
+			}
+			resp, err := httpClient.Get(fmt.Sprintf("https://api.genderize.io/?name=%s", url.QueryEscape(input.Name)))
 			if err != nil {
-				return "", fmt.Errorf("failed to call gender API: %w", err)
+				return "", err
 			}
 			defer resp.Body.Close()
 			var result genderToolResponse
