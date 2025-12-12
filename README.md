@@ -48,7 +48,7 @@ This repository demonstrates how to build an intelligent chat agent using the **
     
     # Optional Configuration
     USER_HISTORY_MAX_LENGTH=10
-    LLM_MAX_OUTPUT_TOKENS_INT=500
+    LLM_MAX_OUTPUT_TOKENS=500
     ```
 
 ## Running the Application
